@@ -31,6 +31,17 @@ class Rax(object):
         return True
 
     def get_server(self, id=None):
+        """Get a particular server by id.
+
+        Keyword Arguments:
+            id {str} -- String representation of the node's ID (default: {None})
+
+        Raises:
+            NameError: Raised if no name is id (name) is provided
+
+        Returns:
+            {obj} -- Object containing node.
+        """
         if not id:
             raise NameError
         self.get_servers()
@@ -52,7 +63,18 @@ class Rax(object):
         else:
             return False
 
-    def stop_server(self, node=None):
+    def __stop_server(self, node=None):
+        """Stop a server.
+
+        Keyword Arguments:
+            node {obj} -- Node object to operate on (default: {None})
+
+        Raises:
+            NameError: Node named is not present.
+
+        Returns:
+            {bool | error} -- True if successful, otherwise returned error
+        """
         if not node:
             raise NameError
         try:
@@ -62,11 +84,19 @@ class Rax(object):
         return True
 
     def stop_servers(self, servers=[]):
+        """Stop a group/list of servers.
+
+        Keyword Arguments:
+            servers {list} -- Servers to perform the stop action on (default: {[]})
+
+        Returns:
+            {bool} -- True if successful
+        """
         node_list = []
         for server in servers:
             node_list.append(self.get_server(server))
         for node in node_list:
-            result = self.stop_server(node)
+            result = self.__stop_server(node)
             if result:
                 print("Node %s stopped." % node.name)
             else:
