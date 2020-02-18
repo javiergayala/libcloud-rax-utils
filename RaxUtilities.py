@@ -1,21 +1,24 @@
 """Miscellaneous functions."""
 
 
-def prRed(skk):
+def prRed(redStr):
     """Output text in red.
 
-    Arguments:
-        skk {str} -- text to format as red
+    :param strredStrk: Text to print in red
+    :returns: String formatted in red
+    :rtype: str
+
     """
-    out = "\033[91m {}\033[00m".format(skk)
+    out = "\033[91m {}\033[00m".format(redStr)
     return out
 
 
-def prGreen(skk):
+def prGreen(greenStr):
     """Output text in green.
 
-    Arguments:
-        skk {str} -- text to format as green
+    :param str greenStr: Text to print in green
+    :returns: String formatted in green
+    :rtype: str
     """
-    out = "\033[92m {}\033[00m".format(skk)
+    out = "\033[92m {}\033[00m".format(greenStr)
     return out

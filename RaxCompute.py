@@ -14,10 +14,13 @@ class RaxCompute(object):
     def __init__(self, *args, **kwargs):
         """Instantiate the Rax class and make a connection.
 
-        Arguments:
-            username {string} -- RAX username
-            apikey {string} -- RAX API Key
-            region {string} -- RAX Region
+        :param username: RAX Public Cloud username
+        :type username: str
+        :param apikey: API Key for RAX Public Cloud
+        :type apikey: str
+        :param region: RAX Public Cloud Region
+        :type region: str
+
         """
         allowed_keys = set(["username", "apikey", "region"])
         self.__dict__.update((k, False) for k in allowed_keys)
@@ -29,8 +32,9 @@ class RaxCompute(object):
     def get_servers(self):
         """Get a list of servers from the RAX API.
 
-        Returns:
-            {bool}} -- True if successful
+        :returns: True if successful
+        :rtype: bool
+
         """
         self.servers = []
         self.servers += self.driver.list_nodes()
@@ -39,14 +43,11 @@ class RaxCompute(object):
     def get_server(self, id=None):
         """Get a particular server by id.
 
-        Keyword Arguments:
-            id {str} -- String representation of the node's ID (default: {None})
+        :param str id: ID of the node to retrieve
+        :return: Node object requested
+        :rtype: Node
+        :raises NameError: if the id is blank
 
-        Raises:
-            NameError: Raised if no name is id (name) is provided
-
-        Returns:
-            {obj} -- Object containing node.
         """
         if not id:
             raise NameError
@@ -60,8 +61,9 @@ class RaxCompute(object):
     def print_servers(self):
         """Get and print the list of servers.
 
-        Returns:
-            {bool} -- True if successful, otherwise False
+        :returns: True if successful
+        :rtype: bool
+
         """
         if self.get_servers():
             print(self.servers)
@@ -72,8 +74,8 @@ class RaxCompute(object):
     def list_servers_status(self):
         """List a table of server statuses.
 
-        Returns:
-            {bool} -- True if successful
+        :returns: True if successful
+        :rtype: bool
         """
         if self.get_servers():
             x = PrettyTable()
@@ -93,14 +95,11 @@ class RaxCompute(object):
     def __stop_server(self, node=None):
         """Stop a server.
 
-        Keyword Arguments:
-            node {obj} -- Node object to operate on (default: {None})
+        :param obj node: Node object to operate on
+        :returns: True if successful
+        :rtype: bool
+        :raises NameError: if no node defined or present
 
-        Raises:
-            NameError: Node named is not present.
-
-        Returns:
-            {bool | error} -- True if successful, otherwise returned error
         """
         if not node:
             raise NameError
@@ -113,11 +112,10 @@ class RaxCompute(object):
     def stop_servers(self, servers=[]):
         """Stop a group/list of servers.
 
-        Keyword Arguments:
-            servers {list} -- Servers to perform the stop action on (default: {[]})
+        :param list servers: Servers to perform the stop action on
+        :returns: True if successful
+        :rtype: bool
 
-        Returns:
-            {bool} -- True if successful
         """
         node_list = []
         for server in servers:
@@ -135,14 +133,10 @@ class RaxCompute(object):
     def __destroy_server(self, node=None):
         """Destroy a server.
 
-        Keyword Arguments:
-            node {obj} -- Node object to operate on (default: {None})
-
-        Raises:
-            NameError: Node named is not present.
-
-        Returns:
-            {bool | error} -- True if successful, otherwise returned error
+        :param obj node: Node object to operate on
+        :returns: True if successful
+        :rtype: bool
+        :raises NameError: if no node defined or present
         """
         if not node:
             raise NameError
@@ -155,11 +149,9 @@ class RaxCompute(object):
     def destroy_servers(self, servers=[]):
         """Destroy a group/list of servers.
 
-        Keyword Arguments:
-            servers {list} -- Servers to perform the stop action on (default: {[]})
-
-        Returns:
-            {bool} -- True if successful
+        :param list servers: Servers to perform the destroy action on
+        :returns: True if successful
+        :rtype: bool
         """
         node_list = []
         for server in servers:

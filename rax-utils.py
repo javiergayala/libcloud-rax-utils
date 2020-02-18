@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-"""
-Module Docstring
-"""
+"""RAX Utilities CLI."""
 
 __author__ = "Javier Ayala"
 __version__ = "0.1.0"
@@ -21,7 +19,11 @@ from RaxConfigParser import RaxConfigParser
 
 
 def main(args):
-    """ Main entry point of the app """
+    """Entry point of the app.
+
+       :module rax-utils:
+       :param tuple args: Arguments parsed from the command line
+    """
     logger.info("Entering main function")
     logger.debug(args)
     logger.debug("Retrieving credentials")
@@ -49,8 +51,8 @@ def main(args):
             logger.error("ERROR: MUST USE --force TO DESTROY NODES")
 
 
-if __name__ == "__main__":
-    """ This is executed when run from the command line """
+def createParser():
+    """Create the argumentparser."""
     parser = argparse.ArgumentParser()
 
     # Required positional argument
@@ -105,5 +107,11 @@ if __name__ == "__main__":
         version="%(prog)s (version {version})".format(version=__version__),
     )
 
-    args = parser.parse_args()
+    return parser
+
+
+if __name__ == "__main__":
+    """ This is executed when run from the command line """
+    args = createParser()
+    args.parse_args()
     main(args)

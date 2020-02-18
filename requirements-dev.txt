@@ -1,0 +1,6 @@
+-r requirements.txt
+pydocstyle
+black
+sphinx
+sphinx-argparse
+recommonmark
