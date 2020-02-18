@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>RaxCompute &#8212; RAX-Utils 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="RaxConfigParser" href="RaxConfigParser.html" />
+    <link rel="prev" title="Welcome to RAX-Utils’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-RaxCompute">
+<span id="raxcompute"></span><h1>RaxCompute<a class="headerlink" href="#module-RaxCompute" title="Permalink to this headline">¶</a></h1>
+<p>RaxCompute wrapper class.</p>
+<dl class="class">
+<dt id="RaxCompute.RaxCompute">
+<em class="property">class </em><code class="sig-prename descclassname">RaxCompute.</code><code class="sig-name descname">RaxCompute</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#RaxCompute.RaxCompute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connects to RAX Public Cloud for manipulation of nodes.</p>
+<dl class="method">
+<dt id="RaxCompute.RaxCompute.destroy_servers">
+<code class="sig-name descname">destroy_servers</code><span class="sig-paren">(</span><em class="sig-param">servers=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#RaxCompute.RaxCompute.destroy_servers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destroy a group/list of servers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>servers</strong> (<em>list</em>) – Servers to perform the destroy action on</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if successful</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="RaxCompute.RaxCompute.get_server">
+<code class="sig-name descname">get_server</code><span class="sig-paren">(</span><em class="sig-param">id=None</em><span class="sig-paren">)</span><a class="headerlink" href="#RaxCompute.RaxCompute.get_server" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a particular server by id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>id</strong> (<em>str</em>) – ID of the node to retrieve</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Node object requested</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Node</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>NameError</strong> – if the id is blank</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="RaxCompute.RaxCompute.get_servers">
+<code class="sig-name descname">get_servers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#RaxCompute.RaxCompute.get_servers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of servers from the RAX API.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if successful</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="RaxCompute.RaxCompute.list_servers_status">
+<code class="sig-name descname">list_servers_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#RaxCompute.RaxCompute.list_servers_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>List a table of server statuses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if successful</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="RaxCompute.RaxCompute.print_servers">
+<code class="sig-name descname">print_servers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#RaxCompute.RaxCompute.print_servers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get and print the list of servers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if successful</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="RaxCompute.RaxCompute.stop_servers">
+<code class="sig-name descname">stop_servers</code><span class="sig-paren">(</span><em class="sig-param">servers=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#RaxCompute.RaxCompute.stop_servers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop a group/list of servers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>servers</strong> (<em>list</em>) – Servers to perform the stop action on</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if successful</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">RAX-Utils</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">RaxCompute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RaxConfigParser.html">RaxConfigParser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RaxUtilities.html">RaxUtilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rax-utils.html">rax-utils CLI</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to RAX-Utils’s documentation!</a></li>
+      <li>Next: <a href="RaxConfigParser.html" title="next chapter">RaxConfigParser</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Javier Ayala.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/RaxCompute.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
