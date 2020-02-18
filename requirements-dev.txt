@@ -2,5 +2,6 @@
 pydocstyle
 black
 sphinx
+sphinx-theme
 sphinx-argparse
 recommonmark
