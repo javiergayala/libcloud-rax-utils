@@ -1,10 +1,16 @@
-"""RAX wrapper class."""
+"""RaxCompute wrapper class."""
 
-from libcloud.compute.types import Provider
+from libcloud.common.exceptions import BaseHTTPError
 from libcloud.compute.providers import get_driver
+from libcloud.compute.types import Provider
+from prettytable import PrettyTable
+
+from RaxUtilities import prGreen, prRed
 
 
-class Rax(object):
+class RaxCompute(object):
+    """Connects to RAX Public Cloud for manipulation of nodes."""
+
     def __init__(self, *args, **kwargs):
         """Instantiate the Rax class and make a connection.
 
@@ -63,6 +69,27 @@ class Rax(object):
         else:
             return False
 
+    def list_servers_status(self):
+        """List a table of server statuses.
+
+        Returns:
+            {bool} -- True if successful
+        """
+        if self.get_servers():
+            x = PrettyTable()
+            x.field_names = ["Name", "UUID", "Current State"]
+            x.align["Name"] = "l"
+            x.align["Current State"] = "l"
+            for server in self.servers:
+                if server.state == "running":
+                    x.add_row([server.name, server.uuid, prGreen(server.state)])
+                elif server.state == "stopped":
+                    x.add_row([server.name, server.uuid, prRed(server.state)])
+                else:
+                    x.add_row([server.name, server.uuid, server.state])
+            print(x)
+        return True
+
     def __stop_server(self, node=None):
         """Stop a server.
 
@@ -98,7 +125,51 @@ class Rax(object):
         for node in node_list:
             result = self.__stop_server(node)
             if result:
-                print("Node %s stopped." % node.name)
+                print(prGreen("Node %s stopped." % node.name))
             else:
-                print("Something went wacky with node %s: %s" % (node.name, result))
+                print(
+                    prRed("Something went wacky with node %s: %s" % (node.name, result))
+                )
+        return True
+
+    def __destroy_server(self, node=None):
+        """Destroy a server.
+
+        Keyword Arguments:
+            node {obj} -- Node object to operate on (default: {None})
+
+        Raises:
+            NameError: Node named is not present.
+
+        Returns:
+            {bool | error} -- True if successful, otherwise returned error
+        """
+        if not node:
+            raise NameError
+        try:
+            node.destroy()
+        except BaseHTTPError as identifier:
+            return identifier
+        return True
+
+    def destroy_servers(self, servers=[]):
+        """Destroy a group/list of servers.
+
+        Keyword Arguments:
+            servers {list} -- Servers to perform the stop action on (default: {[]})
+
+        Returns:
+            {bool} -- True if successful
+        """
+        node_list = []
+        for server in servers:
+            node_list.append(self.get_server(server))
+        for node in node_list:
+            result = self.__destroy_server(node)
+            if result:
+                print(prGreen("Node %s DESTROYED." % node.name))
+            else:
+                print(
+                    prRed("Something went wacky with node %s: %s" % (node.name, result))
+                )
         return True
